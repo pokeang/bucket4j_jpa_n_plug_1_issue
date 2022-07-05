@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	<title>Error page</title>
+	<div th:replace="fragments/header :: header-css"></div>
+	</head>
+    <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+	    <div th:replace="fragments/header :: header"></div>
+		<div class="container py-5 h-100">
+	        <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|"></h1>
+	        <p th:text="${errorMessage}"></p>
+	        <a href="#" th:href="@{/login}">Back to Login</a>
+	    </div>
+    </body>
+</html>

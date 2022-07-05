@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Usert Sing up</title>
+<div th:replace="fragments/header :: header-css"></div>
+</head>
+<body>
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container py-5 h-100">
+		<h3 class="mb-5">Edit User</h3>
+		<div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+		<form action="#" th:action="@{/update/{id}(id=${userUpdateDTO.id})}"
+			th:object="${userUpdateDTO}" method="post">
+			<div class="row d-flex justify-content-center align-items-center h-100">
+				<div class="col-md-6">
+					<div class="mb-3">
+						<label for="first-name" class="form-label">First name<sup class="text-danger">*</sup></label>
+						<input
+							type="text" class="form-control" th:field="*{firstName}"
+							id="first-name" placeholder="First name">
+						<div class="invalid-feedback d-block"
+							th:if="${#fields.hasErrors('firstName')}"
+							th:errors="*{firstName}"></div>
+					</div>
+					<div class="mb-3">
+						<label for="last-name" class="form-label">Last name<sup class="text-danger">*</sup></label> <input
+							type="text" class="form-control" th:field="*{lastName}"
+							id="last-name" placeholder="Last name">
+						<div class="invalid-feedback d-block"
+							th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+					</div>
+					<div class="mb-3">
+						<label for="email" class="form-label">Email<sup class="text-danger">*</sup></label> <input
+							type="email" class="form-control" th:field="*{email}" id="email"
+							placeholder="example@gmail.com">
+						<div class="invalid-feedback d-block"
+							th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+					</div>
+					<div class="mb-3">
+						<label for="role" class="form-label">Role</label>
+						<select class="custom-select" id="gender" th:field="*{role}">
+						    <option value="" selected>Please choose role</option>
+						    <option th:value="'ROLE_USER'" th:text="User"></option>
+						    <option th:value="'ROLE_ADMIN'" th:text="Admin"></option>
+						</select>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="mb-3">
+						<label for="phone-number" class="form-label">Phone Number</label> <input
+							type="text" class="form-control" th:field="*{phoneNumber}"
+							id="phone-number" placeholder="Ex: 000 000 000">
+						<div class="invalid-feedback d-block"
+							th:if="${#fields.hasErrors('phoneNumber')}"
+							th:errors="*{phoneNumber}"></div>
+					</div>
+					<div class="mb-3">
+						<label for="gender" class="form-label">Gender</label>
+						<select class="custom-select" id="gender" th:field="*{gender}">
+						    <option value="" selected>Please choose grander...</option>
+						    <option th:value="'FEMALE'" th:text="Female"></option>
+						    <option th:value="'MALE'" th:text="Male"></option>
+						</select>
+					</div>
+					
+					<div class="mb-3">
+						<label for="city" class="form-label">City</label> <input
+							type="text" class="form-control" th:field="*{city}" id="city"
+							placeholder="Tokyo..">
+					</div>
+					<div class="mb-3">
+						<label for="address1" class="form-label">Address</label> <input
+							type="text" class="form-control" th:field="*{address1}"
+							id="text" placeholder="">
+					</div>
+					<!-- <div class="mb-3">
+						<label for="address1" class="form-label">Address 1</label> <input
+							type="text" class="form-control" th:field="*{address1}"
+							id="text" placeholder="">
+					</div> -->
+				</div>
+			</div> 
+			<button class="btn btn-primary" type="submit">Save</button>
+		</form>
+	</div>
+
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+
+</html>
