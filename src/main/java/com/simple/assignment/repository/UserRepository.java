@@ -11,6 +11,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.simple.assignment.model.Gender;
+import com.simple.assignment.model.Role;
 import com.simple.assignment.model.User;
 
 @Repository
@@ -27,7 +29,7 @@ public interface UserRepository extends JpaRepository<User, Serializable>{
 	@Modifying
 	@Query(value = "UPDATE users SET first_name= :firstName, last_name = :lastName, emails = :email, role = :role, gender = :gender, phone_number = :phoneNumber, city = :city, address1 = :address1, update_date = :updateDate WHERE user_id = :userId", nativeQuery = true)
 	public void updateUser(@Param("userId") long userId, @Param("firstName") String firstName, @Param("lastName") String lastName, @Param("email") String email
-			, @Param("role") String role, @Param("gender") String gender, @Param("phoneNumber") String phoneNumber, @Param("city") String city, @Param("address1") String address1, @Param("updateDate") Date updateDate);
+			, @Param("role") Role role, @Param("gender") Gender gender, @Param("phoneNumber") String phoneNumber, @Param("city") String city, @Param("address1") String address1, @Param("updateDate") Date updateDate);
 
 
 }

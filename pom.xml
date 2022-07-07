@@ -9,12 +9,12 @@
 	</parent>
 	<groupId>com.exercise</groupId>
 	<artifactId>demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<!--<version>0.0.1-SNAPSHOT</version>-->
+	<packaging>jar</packaging>
 	<name>demo</name>
 	<description>Create user exercise</description>
 	<properties>
-		<java.version>8</java.version>
+		<java.version>11</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -95,6 +95,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>User-module</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

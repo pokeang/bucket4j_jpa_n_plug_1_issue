@@ -75,11 +75,9 @@ public class UserServiceImpl implements UserService {
 		try {
 			user.setUpdateDate(new Date());
 			logger.info(user.toString());
-			String role = user.getRole().toString();
-			String gender = user.getGender().toString();
 			UserEmail email = user.getEmails().stream().filter(e -> e.isActive()).findFirst().get();
 			userRepository.updateUser(user.getUserId(), user.getFirstName(), user.getLastName(), email.getEmail(),
-					role, gender, user.getPhoneNumber(), user.getCity(), user.getAddress1(), user.getUpdateDate());
+					user.getRole(), user.getGender(), user.getPhoneNumber(), user.getCity(), user.getAddress1(), user.getUpdateDate());
 		
 		} catch(Exception e) {
 			logger.error(e.getMessage());

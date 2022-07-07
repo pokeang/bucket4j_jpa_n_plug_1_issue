@@ -16,6 +16,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
@@ -26,7 +27,7 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", indexes = @Index(name="mulitIndex1", columnList = "first_name, last_name"))
 @NamedEntityGraph(name = "user-history-graph", attributeNodes = @NamedAttributeNode(value = "userLoginHistories"))
 public class User implements Serializable {
 
@@ -61,7 +62,7 @@ public class User implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 10)
-	private Role role;
+	private Role role = Role.ROLE_USER;
 
 	@Size(max = 100)
 	private String city;
@@ -70,6 +71,7 @@ public class User implements Serializable {
 	@Size(max = 15)
 	private String phoneNumber;
 
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(length = 10)
 	private Gender gender;
@@ -101,6 +103,7 @@ public class User implements Serializable {
 		this.emails = emails;
 		this.password = password;
 	}
+	
 
 	public String getLastLogin() {
 		Collections.sort(this.userLoginHistories, new UserLoginHistoryComparator());
